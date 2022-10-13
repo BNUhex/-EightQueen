@@ -1,0 +1,46 @@
+#include<iostream>
+#include<cstdlib>
+#include<math.h>
+using namespace std;
+int queenLoc[8];//queen每行位置；
+    static int n=0;
+bool kill(int m,int i){
+    if(m==0)
+    return false;
+   
+    for(int j=0;j<m;j++){
+        if(queenLoc[j]==i||m-j==abs(i-queenLoc[j]))
+        return true;
+    }
+    return false;
+}
+
+void locateQueen(int k){
+    for(int i=0;i<8;i++){        
+        if(kill(k,i)){
+            if(i==7)
+           return;
+            else 
+            continue;
+        }
+       
+        if(k!=7){
+            queenLoc[k]=i;
+        
+        locateQueen(k+1);
+        }
+        if(k== 7){
+            n++;//count the number
+            for(int a=0;a<8;a++)
+            cout<<queenLoc[a];
+            cout<<i<<endl;
+        }     
+    }        
+}
+    
+int main(){
+locateQueen(0);
+cout<<n;
+return 0;
+
+}
